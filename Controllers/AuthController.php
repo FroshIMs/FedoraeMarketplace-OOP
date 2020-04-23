@@ -1,10 +1,11 @@
 <?php
+// Changed to a one login instead of two.
 class AuthController extends Controller {
 
   private $_username, $_email, $_password, $_passwordConf, $_terms;
   public $errors = array();
 
-  public function customerSignup() {
+  public function signup() {
 
 // if user clicks on the sign up button
     if (isset($_POST['signup-btn'])) {
@@ -69,7 +70,7 @@ class AuthController extends Controller {
 }
 
 
-  public function customerLogin() {
+  public function login() {
     // if user clicks on the login button
     if (isset($_POST['login-btn'])) {
       $this->_username = $_POST['username'];
@@ -89,40 +90,35 @@ class AuthController extends Controller {
         $stmt->execute([$this->_username, $this->_username]);
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($users as $user) {
-          // code...
-        }
-
-
-        if(empty($user)){
-          $this->errors['no_user'] = 'User does not exist';
-        } else {
-          if (password_verify($this->_password, $user['password'])) {
-            //login success
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['verified'] = $user['verified'];
-            $_SESSION['user_type'] = $user['user_type'];
-            // set flash message
-            $_SESSION['message'] = "Welcome back, ".$_SESSION['username'];
-            $_SESSION['alert-class'] = "alert-success";
-
-            if ($_SESSION['verified'] == 0 && $_SESSION['user_type'] == 1) {
-                header('Location: http://localhost/fedorae/customer');
-            } elseif ($_SESSION['verified'] == 1 && $_SESSION['user_type'] == 1) {
-                header('Location: http://localhost/fedorae/customer');
-            } else {
-                header('Location: http://localhost/fedorae/multivendor/sp/dashboard');
-            }
-
-            exit();
+          if(empty($user)){
+            $this->errors['no_user'] = 'User does not exist';
           } else {
-            $this->errors['login_fail'] = "Please double check credentials";
+            if (password_verify($this->_password, $user['password'])) {
+                //login success
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['user_type'] = $user['user_type'];
+
+                if ($user['verified'] == 0 || $user['user_type'] == 0) {
+                    header('Location: http://localhost/fedorae/customer');
+                } elseif ($user['verified'] == 0 && $user['user_type'] == 2) {
+                    header('Location: http://localhost/fedorae/multivendor/confirm-email');
+                } elseif ($user['verified'] == 1 && $user['user_type'] == 2) {
+                    header('Location: http://localhost/fedorae/multivendor/sp/dashboard');
+                } else {
+                    echo "<script>alert('Something when wrong.')</script>";
+                }
+                exit();
+              } else {
+                $this->errors['login_fail'] = "Please double check credentials";
+              }
+
+            }
           }
         }
       }
     }
-  }
 
   //logout
   public static function logout() {

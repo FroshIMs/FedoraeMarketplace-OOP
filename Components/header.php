@@ -1,4 +1,4 @@
-<?php  
+<?php
   AuthController::logout();
  ?>
 <!DOCTYPE html>
@@ -53,8 +53,8 @@
                       <ul>
                         <p>Sign in options</p>
                         <li><a style="color: blue;" href="/fedorae/login">Customer</a> </li>
-                        <li><a style="color: blue;" href="/fedorae/multivendor/login">Seller</a> </li>
-                        <li><a style="color: blue;" href="/fedorae/multivendor/login">Producer</a> </li>
+                        <li><a style="color: blue;" href="/fedorae/login">Seller</a> </li>
+                        <li><a style="color: blue;" href="/fedorae/login">Producer</a> </li>
                       </ul>
                       Don't have an account? <a class="" style="color: blue;" href="register">Register</a>
                       <div uk-dropdown>

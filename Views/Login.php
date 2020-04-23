@@ -1,6 +1,6 @@
 <?php
   $login = new AuthController();
-  $login->customerLogin();
+  $login->login();
 ?>
 
 <template>

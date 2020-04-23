@@ -1,4 +1,5 @@
 <?php
+  header('Location: /fedorae/login');
   $login = new AuthController();
   $login->login();
 ?>

@@ -1,4 +1,8 @@
 <?php
+// find of mess up, what if the seller wants to be a customer?
+  if ($_SESSION['user_type'] == 2) {
+    header('Location: /fedorae/multivendor/sp/dashboard');
+  }
   if (!isset($_SESSION['id'])) {
       header('Location: login');
   }

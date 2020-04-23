@@ -6,7 +6,7 @@
     $session_id = $_SESSION['id'];
     $users = UserModel::getuser($session_id);
   } else {
-    header('Location: http://localhost/fedorae/multivendor/login');
+    header('Location: http://localhost/fedorae/login');
   }
 
   if ($_SESSION['user_type'] == 0) {
