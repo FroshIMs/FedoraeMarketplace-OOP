@@ -57,7 +57,6 @@ class AuthController extends Controller {
       if ($stmt->execute([$this->_username, $this->_email, $password, $token, $verified, $this->_terms])) {
 
         MailUp::sendVerificationEmail($this->_email, $this->_username, $token);
-        //send an email just to notify that there was a account created.
 
         // probably should make a redirect function
         header('location: login  ');
@@ -103,8 +102,6 @@ class AuthController extends Controller {
 
                 if ($user['verified'] == 0 || $user['user_type'] == 0) {
                     header('Location: http://localhost/fedorae/customer');
-                } elseif ($user['verified'] == 0 && $user['user_type'] == 2) {
-                    header('Location: http://localhost/fedorae/multivendor/confirm-email');
                 } elseif ($user['verified'] == 1 && $user['user_type'] == 2) {
                     header('Location: http://localhost/fedorae/multivendor/sp/dashboard');
                 } else {
