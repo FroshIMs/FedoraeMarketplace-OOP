@@ -56,7 +56,7 @@ class AuthController extends Controller {
 
       if ($stmt->execute([$this->_username, $this->_email, $password, $token, $verified, $this->_terms])) {
 
-        //MailUp::sendVerificationEmail($this->_email, $this->_username, $token);
+        MailUp::sendVerificationEmail($this->_email, $this->_username, $token);
         //send an email just to notify that there was a account created.
 
         // probably should make a redirect function
@@ -99,6 +99,7 @@ class AuthController extends Controller {
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['user_type'] = $user['user_type'];
+                $_SESSION['verified'] = $user['verified'];
 
                 if ($user['verified'] == 0 || $user['user_type'] == 0) {
                     header('Location: http://localhost/fedorae/customer');
@@ -124,7 +125,10 @@ class AuthController extends Controller {
   public static function logout() {
 
     if (isset($_GET['logout'])) {
-      unset($_SESSION['id']);
+      $svs = array('$_SESSION["id"]', '$_SESSION["username"]', '$_SESSION["email"]', '$_SESSION["user_type"]', '$_SESSION["verified"]');
+      foreach ($svs as $sv) {
+        unset($sv);
+      }
       session_destroy();
       header('Location: login');
     }

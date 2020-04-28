@@ -9,6 +9,10 @@
     header('Location: http://localhost/fedorae/login');
   }
 
+  if ($_SESSION['verified'] === 0) {
+      header('Location: http://localhost/fedorae/login');
+  }
+
   if ($_SESSION['user_type'] == 0) {
       header('Location: http://localhost/fedorae/customer');
   }

@@ -126,7 +126,10 @@ class AuthController extends Controller {
   public static function logout() {
 
     if (isset($_GET['logout'])) {
-      unset($_SESSION['id']);
+      $svs = array('$_SESSION["id"]', '$_SESSION["username"]', '$_SESSION["email"]', '$_SESSION["user_type"]', '$_SESSION["verified"]');
+      foreach ($svs as $sv) {
+        unset($sv);
+      }
       session_destroy();
       header('Location: login');
     }
