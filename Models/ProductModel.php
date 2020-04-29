@@ -101,7 +101,7 @@
             } else {
               for ($i=0; $i < count($product_ids); $i++) {
                 if ($product_ids[$i] == $_POST['productId']) {
-                  $_SESSION['shopping_cart'][$i]['quantity'] += 1;
+                  $_SESSION['shopping_cart'][$i]['quantity'] += $_POST['productQuantity'];
                 }
               }
             }
@@ -125,7 +125,9 @@
             }
           }
         }
-        $_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
+        if (isset($_SESSION['shopping_cart'])) {
+          $_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
+        }
       }
 
     }

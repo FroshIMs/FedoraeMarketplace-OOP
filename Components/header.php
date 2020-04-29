@@ -72,7 +72,8 @@
               </li>
               <li class="uk-active uk-margin uk-margin-right">
                 <div class="uk-inline">
-                  <button class="uk-button uk-button-default uk-text-capitalize" type="button" name="button"><span uk-icon="icon: cart">Cart (<?php echo count($_SESSION['shopping_cart']); ?>)</button>
+                  <button class="uk-button uk-button-default uk-text-capitalize" type="button" name="button">
+                    <span uk-icon="icon: cart">Cart (<?php echo isset($_SESSION['shopping_cart']) ? count( $_SESSION['shopping_cart']) : 0; ?>)</button>
                   <div uk-dropdown>
                     <?php require_once './Components/mini-cart.php'; ?>
                   </div>

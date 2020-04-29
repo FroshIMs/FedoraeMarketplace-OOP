@@ -101,16 +101,19 @@
                     <div class="uk-card-body">
                         <h3 class="uk-card-title uk-text-center"><a style="color: #000" href="#"><?php echo $product['name']; ?></a> </h3>
                         <p class="uk-text-truncate"><?php echo $product['description']; ?></p>
-                        <button v-on:click="addToCart()"
-                                onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
-                                :disabled="inventory <= 0"
-                                type="button"
-                                class="uk-button uk-button-secondary"
-                                name="button"
-                                uk-tooltip="Add to cart">
-                                <span uk-icon="icon: cart">
-                              </button>
-                        <button type="button" class="uk-button uk-button-secondary" name="button" uk-tooltip="Add to compare"><span uk-icon="icon: move"></button>
+                        <form class="" action="" method="post">
+                          <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
+                          <input type="hidden" name="productName" value="<?php echo $product['name']; ?>">
+                          <input type="hidden" name="productPrice" value="<?php echo $product['price']; ?>">
+                          <input type="hidden" name="productQuantity" value="1">
+                          <button class="uk-margin-right uk-button uk-button-primary"
+                                  type="submit"
+                                  name="add-to-cart"
+                                  onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
+                                  uk-tooltip="Add to cart">
+                          <span uk-icon="icon: cart"></button>
+                          <button type="button" class="uk-button uk-button-secondary" name="button" uk-tooltip="Add to compare"><span uk-icon="icon: move"></button>
+                        </form>
                     </div>
                 </div>
             </li>
