@@ -16,7 +16,7 @@
   if ($_SESSION['user_type'] == 0) {
       header('Location: http://localhost/fedorae/customer');
   }
-  if ($_SESSION['verified'] == 0 && $_SESSION['user_type'] == 0) {
+  if ($_SESSION['verified'] == 0 && $_SESSION['user_type'] == 2) {
       header('Location: http://localhost/fedorae/multivendor/confirm-email');
   }
 

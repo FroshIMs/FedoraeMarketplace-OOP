@@ -5,7 +5,7 @@ class AuthController extends Controller {
   private $_username, $_email, $_password, $_passwordConf, $_terms;
   public $errors = array();
 
-  public function signup() {
+  public function customerSignup() {
 
 // if user clicks on the sign up button
     if (isset($_POST['signup-btn'])) {
@@ -56,7 +56,8 @@ class AuthController extends Controller {
 
       if ($stmt->execute([$this->_username, $this->_email, $password, $token, $verified, $this->_terms])) {
 
-        MailUp::sendVerificationEmail($this->_email, $this->_username, $token);
+        //MailUp::sendVerificationEmail($this->_email, $this->_username, $token);
+        // Could send a notification message that the account was created
 
         // probably should make a redirect function
         header('location: login  ');

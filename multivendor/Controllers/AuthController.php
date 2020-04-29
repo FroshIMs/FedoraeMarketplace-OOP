@@ -69,59 +69,6 @@ class AuthController extends Controller {
 }
 
 
-  // public function login() {
-  //   // if user clicks on the login button
-  //   if (isset($_POST['login-btn'])) {
-  //     $this->_username = $_POST['username'];
-  //     $this->_password = $_POST['password'];
-  //
-  //     // validation
-  //     if (empty($this->_username)) {
-  //       $this->errors['username'] = "Username required";
-  //     }
-  //     if (empty($this->_password)) {
-  //         $this->errors['password'] = "Password required";
-  //     }
-  //
-  //     if (count($this->errors) === 0) {
-  //       $loginsql = "SELECT * FROM users WHERE email=? OR username=? LIMIT 1";
-  //       $stmt = Database::connect()->prepare($loginsql);
-  //       $stmt->execute([$this->_username, $this->_username]);
-  //       $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  //       foreach ($users as $user) {
-  //         // code...
-  //       }
-  //       if(empty($user)){
-  //         $this->errors['no_user'] = 'User does not exist';
-  //       } else {
-  //         if (password_verify($this->_password, $user['password'])) {
-  //           //login success
-  //           $_SESSION['id'] = $user['id'];
-  //           $_SESSION['username'] = $user['username'];
-  //           $_SESSION['email'] = $user['email'];
-  //           $_SESSION['verified'] = $user['verified'];
-  //           $_SESSION['user_type'] = $user['user_type'];
-  //           // set flash message
-  //           $_SESSION['message'] = "Welcome back, ".$_SESSION['username'];
-  //           $_SESSION['alert-class'] = "alert-success";
-  //
-  //           if ($_SESSION['verified'] == 0 && $_SESSION['user_type'] == 2) {
-  //               header('Location: http://localhost/fedorae/multivendor/confirm-email');
-  //           } elseif ($_SESSION['verified'] == 1 && $_SESSION['user_type'] == 1) {
-  //               header('Location: http://localhost/fedorae/multivendor/sp/dashboard');
-  //           } else {
-  //               header('Location: http://localhost/fedorae/customer');
-  //           }
-  //
-  //           exit();
-  //         } else {
-  //           $this->errors['login_fail'] = "Please double check credentials";
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
   //logout
   public static function logout() {
 
