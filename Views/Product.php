@@ -37,6 +37,10 @@
               <li v-else>Out of Stock</li>
             </ul>
             <div class="">
+              <form class="" action="" method="post">
+                <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
+                <button class="uk-button uk-button-primary" type="submit" name="add-to-cart">Add</button>
+              </form>
               <div>
                 <div class="uk-text-center">
                   <button v-on:click="addToCart()"

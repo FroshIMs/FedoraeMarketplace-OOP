@@ -25,16 +25,78 @@
               <div class="uk-width-expand">
                   <h3 class="uk-card-title uk-margin-remove-bottom"><?php echo ucwords($store['name']); ?></h3>
                   <small><p class="uk-text-meta uk-margin-remove-top"><?php echo ucwords($seller['first_name'].' '.$seller['last_name']); ?></p></small>
+                  <ul class="uk-list">
+                    <li><span uk-icon="icon: mail" class="uk-margin-right"></span><?php echo $store['email']; ?></li>
+                    <li><span uk-icon="icon: receiver" class="uk-margin-right"></span><?php echo $store['telephone']; ?></li>
+                    <li><span uk-icon="icon: home"  class="uk-margin-right"></span><?php echo $store['address']; ?></li>
+                  </ul>
               </div>
             <?php endforeach; ?>
           <?php endforeach; ?>
         </div>
     </div>
     <div class="uk-card-body">
-        <p><?php echo $store['description']; ?></p>
+      <ul uk-accordion>
+        <li class="uk-close">
+            <a class="uk-accordion-title" href="#">About Store</a>
+            <div class="uk-accordion-content">
+                <p><?php echo $store['description']; ?></p>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href="#">Shipping Policy</a>
+            <div class="uk-accordion-content">
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href="#">Return Policy </a>
+            <div class="uk-accordion-content">
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+            </div>
+        </li>
+      </ul>
     </div>
     <div class="uk-card-footer">
-        <a href="#" class="uk-button uk-button-text">Read more</a>
+        <a class="uk-button uk-button-primary" href="#modal-contactseller" uk-toggle>Contact Seller</a>
+
+    <!-- model for contact seller -->
+    <div id="modal-contactseller" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Customer Enquiries</h2>
+            </div>
+            <div class="uk-modal-body">
+              <form class="uk-form-horizontal uk-margin-large">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-horizontal-text">Your name</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="form-horizontal-text" type="text" name="name" placeholder="Enter your name...">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-horizontal-text">E-mail Address</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" id="form-horizontal-text" type="email" name="email" placeholder="Enter your email address...">
+                    </div>
+                </div>
+
+                <div class="uk-margin">
+                  <label class="uk-form-label" for="form-horizontal-text">Enquiry</label>
+                  <div class="uk-form-controls">
+                      <textarea class="uk-textarea" rows="5" name="enquiry" placeholder="Enter your enquiry..."></textarea>
+                  </div>
+                </div>
+
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                    <button class="uk-button uk-button-primary" type="button">Send</button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
   </div>

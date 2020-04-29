@@ -20,3 +20,6 @@
   Route::set('customer', function() {
     AuthController::CreateView('Customer');
   });
+  Route::set('cart', function() {
+    CartControl::CreateView('Cart');
+  });

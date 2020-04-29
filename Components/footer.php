@@ -65,6 +65,7 @@
           cart: 0,
           seller: "View Seller",
           isHidden: true,
+          quantity: 1
 				}
 			},
       methods: {
@@ -73,6 +74,9 @@
         },
         removeFromCart: function() {
           this.cart -= 1
+        },
+        quantity: function() {
+          this.quantity += 1
         }
       },
       computed: {
