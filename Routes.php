@@ -23,3 +23,6 @@
   Route::set('cart', function() {
     CartControl::CreateView('Cart');
   });
+  Route::set('checkout', function() {
+    CartControl::CreateView('Checkout');
+  });

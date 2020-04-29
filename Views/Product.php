@@ -11,6 +11,8 @@
     $seller = new SellersControl();
     $sellers = $seller->acceptSellers($seller_id);
   }
+
+  ProductModel::addToCart();
  ?>
 
 <div class="uk-container uk-margin">
@@ -32,30 +34,30 @@
             <small><a href="multivendor/store?store_id=<?php echo $product['user_id']; ?>">{{ seller }}</a></small>
             <p>Price: <?php echo '$'.$product['price']; ?></p>
             <ul class="uk-list-item">
-              <li v-if="inventory >= 10">In stock</li>
-              <li v-else-if="inventory < 10 && inventory > 0">Almost Out of Stock</li>
-              <li v-else>Out of Stock</li>
+              <?php if ($product['quantity'] >= 10): ?>
+                <li>In stock</li>
+              <?php elseif($product['quantity'] < 10 && $product['quantity'] > 0): ?>
+                <li>Almost Out of Stock</li>
+              <?php else: ?>
+                <li>Out of Stock</li>
+              <?php endif; ?>
             </ul>
-            <div class="">
+            <div class="uk-text-center">
               <form class="" action="" method="post">
                 <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
-                <button class="uk-button uk-button-primary" type="submit" name="add-to-cart">Add</button>
+                <input type="hidden" name="productName" value="<?php echo $product['name']; ?>">
+                <input type="hidden" name="productPrice" value="<?php echo $product['price']; ?>">
+                <input type="hidden" name="productQuantity" value="1">
+                <button class="uk-margin-right uk-button uk-button-primary"
+                        type="submit"
+                        name="add-to-cart"
+                        onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
+                >Add to cart</button>
+                <button v-on:click="addToCart()"
+                        onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
+                        :disabled="inventory <= 0"
+                        class="uk-margin-left uk-button uk-button-default">Buy now</button>
               </form>
-              <div>
-                <div class="uk-text-center">
-                  <button v-on:click="addToCart()"
-                          onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
-                          :disabled="inventory <= 0"
-                          class="uk-margin-right uk-button uk-button-secondary"
-                          dark>Add to cart
-                        </button>
-
-                  <button v-on:click="addToCart()"
-                          onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
-                          :disabled="inventory <= 0"
-                          class="uk-margin-left uk-button uk-button-default">Buy now</button>
-                </div>
-              </div>
             </div>
         </div>
     </div>

@@ -82,4 +82,49 @@
         return $this->addReview();
       }
 
+      // add to Cart
+      public static function addToCart() {
+        $product_ids = array();
+        if (isset($_POST['add-to-cart'])) {
+          if (isset($_SESSION['shopping_cart'])) {
+            $count = count($_SESSION['shopping_cart']);
+
+            $product_ids = array_column($_SESSION['shopping_cart'], 'id');
+
+            if (!in_array($_POST['productId'], $product_ids)) {
+              $_SESSION['shopping_cart'][$count] = array(
+                'id' => htmlentities($_POST['productId']),
+                'name' => htmlentities($_POST['productName']),
+                'price' => htmlentities($_POST['productPrice']),
+                'quantity' => htmlentities($_POST['productQuantity'])
+              );
+            } else {
+              for ($i=0; $i < count($product_ids); $i++) {
+                if ($product_ids[$i] == $_POST['productId']) {
+                  $_SESSION['shopping_cart'][$i]['quantity'] += $_POST['productQuantity'];
+                }
+              }
+            }
+          } else {
+            $_SESSION['shopping_cart'][0] = array(
+              'id' => htmlentities($_POST['productId']),
+              'name' => htmlentities($_POST['productName']),
+              'price' => htmlentities($_POST['productPrice']),
+              'quantity' => htmlentities($_POST['productQuantity'])
+            );
+          }
+        }
+      }
+
+      public static function removeFromCart() {
+        if (isset($_GET['action'])) {
+          foreach ($_SESSION['shopping_cart'] as $key => $product) {
+            if ($product['id'] == $_GET['id']) {
+              unset($_SESSION['shopping_cart'][$key]);
+            }
+          }
+        }
+        $_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
+      }
+
     }
