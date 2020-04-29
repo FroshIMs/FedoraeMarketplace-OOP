@@ -6,4 +6,9 @@
       return $obj->getSellerProducts($id);
     }
 
+    public function acceptStore($id) {
+      $obj = new storeModel();
+      return $obj->getStore($id);
+    }
+
   }

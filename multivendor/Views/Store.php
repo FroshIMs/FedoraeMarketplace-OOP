@@ -1,8 +1,12 @@
 <?php
+// getting store
   $seller_id = $_GET['store_id'];
-  $seller = new SellersControl();
-  $sellers = $seller->acceptSellers($seller_id);
-
+  $store = new StoreControl();
+  $stores = $store->acceptStore($seller_id);
+// getting seller
+  $seller = new SellerControl();
+  $sellers = $seller->acceptGetSeller($seller_id);
+//getting product(s)
   $id = $_GET['store_id'];
   $product = new StoreControl();
   $products = $product->acceptSellerProducts($id);
@@ -13,19 +17,21 @@
     <div class="uk-card uk-card-default uk-width-expand">
     <div class="uk-card-header">
         <div class="uk-grid-small uk-flex-middle" uk-grid>
-          <?php foreach ($sellers as $seller): ?>
-            <div class="uk-width-auto">
-                <img class="uk-border-square" width="200" height="200" src="images/avatar.jpg">
-            </div>
-            <div class="uk-width-expand">
-                <h3 class="uk-card-title uk-margin-remove-bottom"><?php echo ucwords($seller['username']); ?></h3>
-                <small><p class="uk-text-meta uk-margin-remove-top"><?php echo 'Full Name' //ucwords($seller['first_name'].' '.$seller['last_name']); ?></p></small>
-            </div>
+          <?php foreach ($stores as $store): ?>
+            <?php foreach ($sellers as $seller): ?>
+              <div class="uk-width-auto">
+                  <img class="uk-border-square" width="200" height="200" src="images/avatar.jpg">
+              </div>
+              <div class="uk-width-expand">
+                  <h3 class="uk-card-title uk-margin-remove-bottom"><?php echo ucwords($store['name']); ?></h3>
+                  <small><p class="uk-text-meta uk-margin-remove-top"><?php echo ucwords($seller['first_name'].' '.$seller['last_name']); ?></p></small>
+              </div>
+            <?php endforeach; ?>
           <?php endforeach; ?>
         </div>
     </div>
     <div class="uk-card-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <p><?php echo $store['description']; ?></p>
     </div>
     <div class="uk-card-footer">
         <a href="#" class="uk-button uk-button-text">Read more</a>
