@@ -1,5 +1,6 @@
 <?php
   AuthController::logout();
+  ProductModel::addToCart();
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -71,33 +72,11 @@
               </li>
               <li class="uk-active uk-margin uk-margin-right">
                 <div class="uk-inline">
-                <button class="uk-button uk-button-default uk-text-capitalize" type="button" name="button"><span uk-icon="icon: cart">Cart ({{ cart }})</button>
-                <div uk-dropdown>
-                  <div v-if="cart > 0" class="uk-overflow-auto">
-                  <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-                      <tbody>
-                          <tr v-if="removeFromCart">
-                              <td><input class="uk-checkbox" type="checkbox"></td>
-                              <td><img class="uk-preserve-width uk-border-circle" src="images/avatar.jpg" width="40" alt=""></td>
-                              <td class="">Airpods</td>
-                              <td class="">$100.00</td>
-                              <td><button
-                                    style="color: red;"
-                                    class="uk-icon-button uk-margin-small-right"
-                                    uk-icon="close"
-                                    v-on:click="removeFromCart"
-                                    ></button></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <div class="uk-align-right">
-                    <a class="uk-button uk-button-primary" href="">ViewCart</a>
-                    <a class="uk-button uk-button-secondary" href="">CheckOut</a>
+                  <button class="uk-button uk-button-default uk-text-capitalize" type="button" name="button"><span uk-icon="icon: cart">Cart (<?php echo count($_SESSION['shopping_cart']); ?>)</button>
+                  <div uk-dropdown>
+                    <?php require_once './Components/mini-cart.php'; ?>
                   </div>
                 </div>
-                <div v-else>Your shopping cart is empty.</div>
-                </div>
-
               </div>
             </li>
           </ul>

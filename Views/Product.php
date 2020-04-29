@@ -11,8 +11,6 @@
     $seller = new SellersControl();
     $sellers = $seller->acceptSellers($seller_id);
   }
-
-  ProductModel::addToCart();
  ?>
 
 <div class="uk-container uk-margin">
@@ -52,6 +50,7 @@
                         type="submit"
                         name="add-to-cart"
                         onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"
+                        v-on:click="addToCart()"
                 >Add to cart</button>
                 <button v-on:click="addToCart()"
                         onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Product was successfully added.'})"

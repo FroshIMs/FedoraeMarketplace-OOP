@@ -101,7 +101,7 @@
             } else {
               for ($i=0; $i < count($product_ids); $i++) {
                 if ($product_ids[$i] == $_POST['productId']) {
-                  $_SESSION['shopping_cart'][$i]['quantity'] += $_POST['productQuantity'];
+                  $_SESSION['shopping_cart'][$i]['quantity'] += 1;
                 }
               }
             }
@@ -121,6 +121,7 @@
           foreach ($_SESSION['shopping_cart'] as $key => $product) {
             if ($product['id'] == $_GET['id']) {
               unset($_SESSION['shopping_cart'][$key]);
+              header('Location: /fedorae/product?product_id='.$_GET['id']);
             }
           }
         }
