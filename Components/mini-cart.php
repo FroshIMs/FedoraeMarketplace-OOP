@@ -30,7 +30,7 @@
           </strong>
           <div class="uk-margin">
             <span uk-icon="icon: cart"></span><a class="uk-button uk-button-primary" href="/fedorae/cart">View Cart</a>
-            <span uk-icon="icon: forward"></span><a class="uk-button uk-button-primary" href="/fedorae/checkout">CheckOut</a>
+            <span uk-icon="icon: forward"></span><button class="uk-button uk-button-primary" type="submit" name="set1">CheckOut</button>
           </div>
         </div>
      </div>

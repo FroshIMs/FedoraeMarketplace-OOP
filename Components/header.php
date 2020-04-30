@@ -1,6 +1,7 @@
 <?php
   AuthController::logout();
   ProductModel::addToCart();
+  CheckoutModel::OrderInfo();
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
