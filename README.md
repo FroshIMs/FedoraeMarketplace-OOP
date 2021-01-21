@@ -1,3 +1,3 @@
-Just for clarification, you will see some function definitions around this application, they are going to be implemented 'eventually'. Time got the best of me.
+This repository contains the Object Oriented code for the Fedorae Marketplace Project.
 
-SMH, I should not be repeating so much code. I'll fix it 'eventually'. Time got the best of me.
+See object Procedural code here: https://github.com/fedorae-com/FedoraeMarketplace-Procedural
